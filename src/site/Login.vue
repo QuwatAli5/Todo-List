@@ -47,11 +47,11 @@
   </LayoutGuest>
 </template>
 
-
 <script setup>
 import { ref } from 'vue';
-import apiRepository from "@/composables/apiRepository";
 import { mdiAccount, mdiAsterisk } from '@mdi/js';
+import apiRepository from "@/composables/apiRepository";
+import CommonFunction from "@/composables/CommonFunction";
 import LayoutGuest from '@/components/LayoutGuest.vue';
 import SectionFullScreen from '@/components/SectionFullScreen.vue'
 import CardBox from '@/components/CardBox.vue';
@@ -65,6 +65,7 @@ import BaseLevel from '@/components/BaseLevel.vue';
 
 // Imported Variables and Functions
 const { login } = apiRepository();
+const { fireToaster } = CommonFunction();
 
 // Data Variables
 const processing = ref(false);
@@ -88,8 +89,7 @@ const proceedLogin = () => {
     processing.value = true;
     login(user.value).then((response) => {
       if(response.status == 200) {
-        status.value = 'Logged In Successfully!';
-        notificationClass.value = 'success';
+        fireToaster('Logged In Successfully!', 'success');
         localStorage.setItem("token", response.data.user.token);
         window.location.reload();
       } else {
