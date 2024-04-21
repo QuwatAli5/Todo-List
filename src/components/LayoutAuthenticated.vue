@@ -70,10 +70,16 @@ router.beforeEach(() => {
 
 const menuClick = (event, item) => {
   if (item.isLogout) {
-    logout().then((response) => {
+    logout(localStorage.getItem('token')).then((response) => {
+      if(response.status == 200) {
         fireToaster('Logged out successfully', 'success');
         localStorage.removeItem('token');
         window.location.reload();
+      } else {
+        fireToaster(response.data.message ? response.data.message : response.response.data.error[0], 'error');
+      }
+    }).catch((errors) => {
+        console.log(errors);  
     });
   }
 }
