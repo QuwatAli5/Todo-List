@@ -63,7 +63,7 @@ import LayoutAuthenticated from '@/components/LayoutAuthenticated.vue';
 import SectionTitleLineWithButton from '@/components/SectionTitleLineWithButton.vue';
 
 // Imported Variables and Functions
-const { getAllList, deleteList } = apiRepository();
+const { getAllList, deleteList, refreshToken } = apiRepository();
 const { fireToaster, truncateDescription } = CommonFunction();
 
 // Data Variables
@@ -95,8 +95,7 @@ watch (() => listItems.value, (newArr) => {
 const getListItems = (url = null) => {
     getAllList(url).then((response) => {
         if(response.status == 401) { // If Token Expired
-            localStorage.removeItem('token');
-            window.location.reload();
+            refresh();
         }
         
         const { data } = response;
@@ -137,6 +136,17 @@ const removeListItem = (list_id) => {
     });
 }
 
+const refresh = () => {
+    refreshToken(localStorage.getItem('token')).then((response) => {
+        if(response.status == 200) {
+            localStorage.setItem("token", response.data.access_token);
+        } else {
+            fireToaster(response.data.message ? response.data.message : response.response.data.error[0], 'error');
+        }
+    }).catch((errors) => {
+        console.log(errors);  
+    });
+}
 
 // LifeCycle hooks
 onMounted(() =>{

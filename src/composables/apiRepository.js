@@ -77,6 +77,15 @@ const Auth = () => {
         }
     };
 
+    const refreshToken = async (token) => {
+        try {
+            let response = await axios.post(`/refresh-token/${token}`);
+            return response;
+        } catch (err) {
+            return err.response;
+        }
+    }
+
     return {
         login,
         register,
@@ -86,6 +95,7 @@ const Auth = () => {
         getSingleList,
         updateList,
         deleteList,
+        refreshToken,
     }
 };
 
