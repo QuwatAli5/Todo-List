@@ -21,7 +21,7 @@
                                 {{ item.title }}
                             </td>
                             <td class="px-6 py-4 text-sm whitespace-no-wrap text-slate-800">
-                                {{ item.description }}
+                                {{ truncateDescription(item.description) }}
                             </td>
                             <td class="px-2 py-4 whitespace-no-wrap">
                                 <RouterLink :to="{ name: 'list.show', params: { list_id: item.id } }" class="text-sm text-indigo-600 hover:text-indigo-900">
@@ -53,7 +53,7 @@ import SectionTitleLineWithButton from '@/components/SectionTitleLineWithButton.
 
 // Imported Variables and Functions
 const { getAllList, deleteList } = apiRepository();
-const { fireToaster } = CommonFunction();
+const { fireToaster, truncateDescription } = CommonFunction();
 
 // Data Variables
 const processing = ref(false);

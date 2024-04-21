@@ -2,6 +2,15 @@ import Swal from 'sweetalert2';
 
 const CommonFunctions = () => {
 
+  function truncateDescription(description) {
+    const maxCharacters = 100;
+    if (description && description.length > maxCharacters) {
+      return description.slice(0, maxCharacters) + '...'
+    } else {
+      return description
+    }
+  }
+
   function fireToaster(title = "Success!", type = "success") {
     // ['success', 'error', 'warning', 'info', 'question']
     Swal.fire({
@@ -26,6 +35,7 @@ const CommonFunctions = () => {
 
   return {
     fireToaster,
+    truncateDescription,
   };
 };
 

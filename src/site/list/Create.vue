@@ -68,7 +68,7 @@ const createListItem = () => {
             fireToaster('List Item Created Successfully', 'success');
             router.push({ name: 'list.index' });
         } else {
-            fireToaster(response.response.data.message ? response.response.data.message : response.response.data.error[0], 'error');
+            fireToaster(response.data.message ? response.data.message : response.response.data.error[0], 'error');
         }
     }).catch((errors) => {
         console.log(errors);  
