@@ -94,7 +94,7 @@ watch (() => listItems.value, (newArr) => {
 // Functions
 const getListItems = (url = null) => {
     getAllList(url).then((response) => {
-        if(response.status == 401) {
+        if(response.status == 401) { // If Token Expired
             localStorage.removeItem('token');
             window.location.reload();
         }
