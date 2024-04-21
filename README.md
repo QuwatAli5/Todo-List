@@ -1,5 +1,9 @@
 # Todo-List
 
+## Node Version
+```
+v16.13.0
+```
 ## Project setup
 ```
 npm install
