@@ -17,7 +17,7 @@
             </ul>
         </nav>
         <div v-else-if="props.type === 'load-more' && props.nextPageUrl" class="flex items-center justify-center mt-4">
-            <button @click="$emit('update:ModelValue', props.nextPageUrl)" class="px-4 py-2 text-white bg-indigo-500 rounded-full">
+            <button @click="$emit('update:ModelValue', props.nextPageUrl)" class="px-4 py-2 text-white bg-blue-600 rounded-full">
                 Load more
             </button>
         </div>

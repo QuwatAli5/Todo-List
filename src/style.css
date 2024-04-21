@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.genHeight { overflow-y: auto; overflow-x: hidden; }
+.genHeight::-webkit-scrollbar { width: 8px; height: 8px; }
+.genHeight::-webkit-scrollbar-track { background-color: #e2e2e2; }
+.genHeight::-webkit-scrollbar-thumb { background: #1979ff; border-radius: 0.25rem; }
+
+.h-450 { max-height: 400px; overflow: auto; }

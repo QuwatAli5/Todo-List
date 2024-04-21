@@ -31,9 +31,10 @@ const Auth = () => {
     };
 
     // List Related APIs 
-    const getAllList = async () => {
+    const getAllList = async (url) => {
         try {
-            let response = await axios.get(`/items`);
+            url = url ?? `/items`;
+            let response = await axios.get(url);
             return response;
         } catch (err) {
             return err.response;
